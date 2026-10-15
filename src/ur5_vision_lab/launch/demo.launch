@@ -1,0 +1,11 @@
+<launch>
+  <arg name="with_ur5" default="true"/>
+  <arg name="rviz" default="true"/>
+  <include if="$(arg with_ur5)" file="$(find ur_gazebo)/launch/ur5_bringup.launch"/>
+  <include unless="$(arg with_ur5)" file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/><arg name="paused" value="false"/>
+  </include>
+  <include file="$(find ur5_vision_lab)/launch/sensors.launch"/>
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="vision_lab_rviz"
+    args="-d $(find ur5_vision_lab)/rviz/vision_lab.rviz"/>
+</launch>

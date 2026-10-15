@@ -1,0 +1,25 @@
+<launch>
+  <arg name="publish_rate" default="1.0"/>
+
+  <group ns="vision_lab">
+    <param name="lesson_name"
+           type="str"
+           value="launch_basics"/>
+
+    <!-- 发布节点 -->
+    <node pkg="ur5_vision_lab"
+          type="status_node.py"
+          name="status"
+          output="screen">
+      <param name="publish_rate"
+             type="double"
+             value="$(arg publish_rate)"/>
+    </node>
+
+    <!-- 订阅节点 -->
+    <node pkg="ur5_vision_lab"
+          type="status_listener.py"
+          name="status_listener"
+          output="screen"/>
+  </group>
+</launch>

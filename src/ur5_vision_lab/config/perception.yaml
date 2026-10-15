@@ -1,0 +1,6 @@
+rgb_topic: /camera/color/image_raw
+depth_topic: /camera/depth/image_raw
+info_topic: /camera/color/camera_info
+min_area: 60
+saturation_min: 90
+value_min: 50

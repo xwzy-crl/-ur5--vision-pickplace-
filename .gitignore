@@ -1,0 +1,31 @@
+# Catkin 编译生成目录
+/build/
+/devel/
+/install/
+/build_isolated/
+/devel_isolated/
+/install_isolated/
+/.catkin_tools/
+/.catkin_workspace
+
+# 当前只记录自己的视觉学习包
+/src/*
+!/src/ur5_vision_lab/
+
+# 编辑器本地配置
+.vscode/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# 运行日志与录制数据
+*.log
+*.bag
+*.bag.active
+
+# 本地环境
+.env
+.env.*
+.venv/

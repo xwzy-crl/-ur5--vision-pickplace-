@@ -1,0 +1,25 @@
+<launch>
+  <!-- 启动开关：默认不打开 RViz -->
+  <arg name="show_rviz" default="false"/>
+
+  <!-- 设置一个用于学习的 ROS 参数 -->
+  <group ns="vision_lab">
+    <param name="lesson_name"
+           type="str"
+           value="launch_basics"/>
+  </group>
+
+  <!-- 复用已有的仿真入口 -->
+  <include file="$(find ur5_vision_lab)/launch/demo.launch">
+    <arg name="with_ur5" value="true"/>
+    <arg name="rviz" value="false"/>
+  </include>
+
+  <!-- 由这个练习文件负责启动 RViz -->
+  <node
+    if="$(arg show_rviz)"
+    pkg="rviz"
+    type="rviz"
+    name="lesson_rviz"
+    args="-d $(find ur5_vision_lab)/rviz/vision_lab.rviz"/>
+</launch>

@@ -1,0 +1,9 @@
+{
+  "python.defaultInterpreterPath": "/usr/bin/python3",
+  "python.analysis.extraPaths": [
+    "/opt/ros/noetic/lib/python3/dist-packages",
+    "/usr/lib/python3/dist-packages",
+    "${workspaceFolder}/devel/lib/python3/dist-packages",
+    "${workspaceFolder}/src/ur5_vision_lab/src"
+  ]
+}

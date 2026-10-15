@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ROS: Build catkin workspace",
+      "type": "process",
+      "command": "bash",
+      "args": ["-lc", "source /opt/ros/noetic/setup.bash && catkin_make"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "group": {"kind": "build", "isDefault": true},
+      "problemMatcher": "$gcc"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+<launch>
+  <arg name="table_x" default="0.45"/>
+  <arg name="table_y" default="0.30"/>
+  <arg name="camera_x" default="$(arg table_x)"/>
+  <arg name="camera_y" default="$(arg table_y)"/>
+  <arg name="camera_z" default="1.2"/>
+  <group ns="vision_lab">
+    <node pkg="ur5_vision_lab" type="spawn_scene.py" name="scene" output="screen">
+      <param name="model_dir" value="$(find ur5_vision_lab)/models"/>
+      <param name="table_x" value="$(arg table_x)"/>
+      <param name="table_y" value="$(arg table_y)"/>
+      <param name="camera_x" value="$(arg camera_x)"/>
+      <param name="camera_y" value="$(arg camera_y)"/>
+      <param name="camera_z" value="$(arg camera_z)"/>
+    </node>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="camera_world_tf"
+      args="$(arg camera_x) $(arg camera_y) $(arg camera_z) 0 0.707106781186548 0 0.707106781186548 world vision_lab_camera_link"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="camera_optical_tf"
+      args="0 0 0 -0.5 0.5 -0.5 0.5 vision_lab_camera_link vision_lab_camera_optical_frame"/>
+    <node pkg="ur5_vision_lab" type="perception_node.py" name="perception" output="screen">
+      <rosparam command="load" file="$(find ur5_vision_lab)/config/perception.yaml"/>
+    </node>
+    <node pkg="ur5_vision_lab" type="localization_node.py" name="localization" output="screen">
+      <param name="world_frame" value="world"/><param name="cube_size" value="0.04"/>
+    </node>
+  </group>
+</launch>
