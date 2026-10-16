@@ -28,3 +28,24 @@
 
 ### 下一步
 逐步搭建虚拟吸盘拾取实验，并为每个实验记录代码变化和实际结果。
+
+## 002:将节点之间的关系确定
+- 比如：study_scene.launch
+         → 已有的 demo.launch
+               → UR5 的 Gazebo 仿真
+               → 场景、摄像头和视觉节点
+### 修改
+- 创建 ur5_suction_lab 包。
+- 在 package.xml 中声明 ur5_vision_lab 运行依赖。
+- 添加 study_scene.launch，包含已有的 demo.launch。
+- 修改工作区 .gitignore，将新包纳入版本管理。
+
+### 验证命令
+```bash
+roslaunch ur5_suction_lab study_scene.launch
+rostopic hz /camera/color/image_raw
+```
+
+### 实际结果
+- 摄像头图像话题持续发布，测得约 10 Hz，使用仿真时间。
+- Gazebo 中的场景显示情况：填写自己看到的模型。
