@@ -1,0 +1,12 @@
+<launch>
+
+  <include file="$(find ur5_moveit_config)/launch/moveit_planning_execution.launch">
+    <arg name="sim" value="true"/>
+  </include>
+
+  <param
+    name="robot_description_semantic"
+    textfile="$(find ur5_suction_lab)/config/ur5_suction.srdf"
+  />
+
+</launch>
